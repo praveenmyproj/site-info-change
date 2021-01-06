@@ -1,0 +1,11 @@
+site_config.index:
+  path: '/page_json/{apikey}/{nid}'
+  defaults:
+    _controller: '\Drupal\site_config\Controller\SiteConfig::index'
+    _format: json
+    _title: 'Page Json'
+    nid: ''
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE;

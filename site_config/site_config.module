@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+
+function site_config_form_system_site_information_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form['siteapikey'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Site API Key'),
+    '#size' => 40,
+	'#default_value' => (!empty(\Drupal::config('system.site')->get('siteapikey'))) ? \Drupal::config('system.site')->get('siteapikey') : t('No API Key yet'),
+  );
+  $form['actions']['submit']['#value'] = t("Update configuration");
+  $form['#submit'][] = 'site_config_custom_submit';
+}
+
+function site_config_custom_submit($form, $form_state) {
+  if ((string)$form['siteapikey']['#default_value'] != $form_state->getValue('siteapikey')) {
+	\Drupal::configFactory()->getEditable('system.site')->set('siteapikey', $form_state->getValue('siteapikey'))->save();
+    \Drupal::messenger()->addStatus(t("Site Api Key is saved"));
+  }
+}
