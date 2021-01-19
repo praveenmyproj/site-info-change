@@ -17,7 +17,7 @@ function site_config_form_system_site_information_settings_alter(&$form, \Drupal
 
 function site_config_custom_submit($form, $form_state) {
   if ((string)$form['siteapikey']['#default_value'] != $form_state->getValue('siteapikey')) {
-	\Drupal::configFactory()->getEditable('system.site')->set('siteapikey', $form_state->getValue('siteapikey'))->save();
+    \Drupal::configFactory()->getEditable('system.site')->set('siteapikey', $form_state->getValue('siteapikey'))->save();
     \Drupal::messenger()->addStatus(t("Site Api Key is saved"));
   }
 }
