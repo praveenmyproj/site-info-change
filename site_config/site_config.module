@@ -9,7 +9,7 @@ function site_config_form_system_site_information_settings_alter(&$form, \Drupal
     '#type' => 'textfield',
     '#title' => t('Site API Key'),
     '#size' => 40,
-	'#default_value' => (!empty(\Drupal::config('system.site')->get('siteapikey'))) ? \Drupal::config('system.site')->get('siteapikey') : t('No API Key yet'),
+	  '#default_value' => (!empty(\Drupal::config('system.site')->get('siteapikey'))) ? \Drupal::config('system.site')->get('siteapikey') : t('No API Key yet'),
   );
   $form['actions']['submit']['#value'] = t("Update configuration");
   $form['#submit'][] = 'site_config_custom_submit';
